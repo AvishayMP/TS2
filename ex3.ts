@@ -13,7 +13,6 @@ const getVal = <T, K extends keyof T>(obj: T, key: K): T[K] => obj[key];
 //מתקדם
 //צור פונקציה גנרית שמקבלת מערך של אובייקטים ואובייקט כארגומנטים. הפונקציה תוסיף את האובייקט שהתקבל לכל איבר במערך
 // עליכם לקרוא על ולהשתמש ב: Record
-
 function addToObj<T extends object, K extends object>(arr: T[], add: K): (T & K)[] {
     return arr.map((el: T): (T & K) => {
         return { ...el, ...add };
@@ -21,7 +20,6 @@ function addToObj<T extends object, K extends object>(arr: T[], add: K): (T & K)
 }
 // כתבו פונקציה שמקבלת אובייקט ושם שדה(מפתח).  הפונקציה תחזיר אובייקט חדש בלי המפתח
 // קראו על Omit
-
 const removeField = <T extends object,K extends keyof T>(obj: T, key: K): Omit<T, K> => {
     const { [key]: _, ...rest } = obj;
     return rest as Omit<T, K>;
