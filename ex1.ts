@@ -16,9 +16,10 @@ interface DVD {
   title: string,
   duration: number
 }
+type filterFuncType = (item: Book | DVD) => boolean;
 
 // Step 3: פונקציה מקבלת מערך של פריטים, ופונקצית פילטור. ומחזירה מערך מפולטר של פריטים
-function filterItems(items: (Book | DVD)[], filterFn: (item: Book | DVD) => boolean) {
+function filterItems(items: (Book | DVD)[], filterFn: filterFuncType) {
   // Your code here
   return items.filter(filterFn);
 }
