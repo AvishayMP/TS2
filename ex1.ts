@@ -18,16 +18,16 @@ interface DVD {
 }
 
 // Step 3: פונקציה מקבלת מערך של פריטים, ופונקצית פילטור. ומחזירה מערך מפולטר של פריטים
-function filterItems(items: (Book | DVD)[], filterFn: (item: Book|DVD) => boolean) {
+function filterItems(items: (Book | DVD)[], filterFn: (item: Book | DVD) => boolean) {
   // Your code here
   return items.filter(filterFn);
 }
 
 // Step 4: הפונקציה מקבלת מערך של פריטים ומדפיסה את כל המידע הרלוונטי לגבי כל פריט
-function printItemsData(items: ItemType[]) {
+function printItemsData(items: (Book | DVD)[]) {
   // Your code here
-  items.forEach((item: ItemType): void => {
-
+  items.forEach((item: Book | DVD): void => {
+    console.log(JSON.stringify(item, null, 2));
   })
 }
 
@@ -41,7 +41,7 @@ const libraryItems: (Book | DVD)[] = [
 ];
 
 // Step 5:  הדפיסו את כל המידע הנתון
-
+printItemsData(libraryItems);
 // Step 6: ממשו את פונקצית הפילטור כך שתחזיר סרטים ארוכים משעתיים והדפיסו את המערך
 console.log(filterItems(libraryItems, (item: Book | DVD): boolean => {
   if (item.type === ItemType.DVD) {
@@ -53,3 +53,12 @@ console.log(filterItems(libraryItems, (item: Book | DVD): boolean => {
 }));
 
 // Step 7:  Harper Lee ממשו את פונקצית הפילטור כך שתחזיר רק ספרים של  
+const LeeBook = filterItems(libraryItems, (item: (Book | DVD)): boolean => {
+  if (item.type === ItemType.Book) {
+    if (item.author === 'Harper Lee') {
+      return true;
+    }
+  }
+  return false;
+});
+console.log(JSON.stringify(LeeBook, null, 2));
